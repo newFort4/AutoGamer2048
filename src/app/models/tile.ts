@@ -1,9 +1,9 @@
 export class Tile {
-    value: string;
+    value: number | null;
 
-    static readonly emptyValue = ' ';
+    private static readonly emptyValue = null;
 
-    constructor(value: string) {
+    constructor(value: number | null) {
         this.value = value;
     }
 
@@ -11,12 +11,16 @@ export class Tile {
         return this.value === Tile.emptyValue;
     }
 
-    toString(): string {
-        return this.value;
-    }
-
     canBeMovedOn(tile: Tile): boolean {
         return tile.isEmpty() || this.value === tile.value;
+    }
+
+    empty(): void {
+        this.value = Tile.emptyValue;
+    }
+
+    toString(): string {
+        return this.value?.toString() ?? ' ';
     }
 
     static empty(): Tile {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Movement } from 'src/app/enums/movement';
 import { Tile } from 'src/app/models/tile';
+import { BaseMovement } from 'src/app/movement_definitions/base.movement';
+import { MovementService } from 'src/app/services/movement.service';
 
 @Component({
 	selector: 'app-game',
@@ -14,7 +16,7 @@ export class GameComponent implements OnInit {
 	tiles: Array<Array<Tile>>;
 	movement = Movement;
 
-	constructor() {
+	constructor(private movementService: MovementService) {
 		this.tiles = new Array<Array<Tile>>();
 
 		for (let i = 0; i < this.height; i++) {
@@ -31,25 +33,13 @@ export class GameComponent implements OnInit {
 	}
 
 	onMoveButtonClicked(movement: Movement): void {
-		this.tryMove(movement);
-		this.tryAddValueToBoard();
+		if (this.tryMove(movement)) {
+			this.tryAddValueToBoard();
+		}
 	}
 
 	private tryMove(movement: Movement): boolean {
-		let isSomethingMoved = false;
-
-		for (let i = 1; i < this.width; i++) {
-			for (let j = 0; j < this.height; j++) {
-				let coordX = i;
-				let coordY = j;
-
-				while (this.tiles[coordY][coordX].canBeMovedOn(this.tiles[coordY][coordX - 1])) {
-					
-				}
-			}
-		}
-
-		return isSomethingMoved;
+		return this.movementService.tryMove(this.tiles, movement);
 	}
 
 	private tryAddValueToBoard() {
@@ -62,11 +52,8 @@ export class GameComponent implements OnInit {
 
 		if (emptyTiles.length !== 0) {
 			let randomTileIndex = Math.floor(Math.random() * emptyTiles.length);
-			console.log(randomTileIndex);
-	
-			let number = this.generateTwoOrFour();
-	
-			emptyTiles[randomTileIndex].value = number.toString();
+
+			emptyTiles[randomTileIndex].value = this.generateTwoOrFour();
 		} else {
 			this.endGame();
 		}
