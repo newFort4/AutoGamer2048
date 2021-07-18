@@ -41,7 +41,7 @@ export abstract class BaseMovement {
         return this.isSomethingMoved;
     }
 
-    performLoopCycle(tiles: Array<Array<Tile>>, i: number, j: number): void {
+    private performLoopCycle(tiles: Array<Array<Tile>>, i: number, j: number): void {
         this.coordX = i;
         this.coordY = j;
 
