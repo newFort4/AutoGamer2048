@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let tileLine of tiles">
+            <div *ngFor="let tile of tileLine">
+                <div class="col tile">{{ tile.value }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button (click)="onMoveButtonClicked(movement.Up)">Up</button>
+    </div>
+    <div class="row">
+        <button class="col" (click)="onMoveButtonClicked(movement.Left)">Left</button>
+        <button class="col" (click)="onMoveButtonClicked(movement.Right)">Right</button>
+    </div>
+    <div class="row">
+        <button (click)="onMoveButtonClicked(movement.Down)">Down</button>
+    </div>
+</div>

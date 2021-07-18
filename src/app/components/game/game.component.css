@@ -1,0 +1,7 @@
+.tile {
+    border-width: 10px;
+    border: solid;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
