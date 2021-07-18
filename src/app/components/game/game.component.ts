@@ -36,16 +36,20 @@ export class GameComponent implements OnInit {
 	}
 
 	private tryMove(movement: Movement): boolean {
-		switch (movement) {
-			case Movement.Left:
-				
-				break;
-		
-			default:
-				break;
+		let isSomethingMoved = false;
+
+		for (let i = 1; i < this.width; i++) {
+			for (let j = 0; j < this.height; j++) {
+				let coordX = i;
+				let coordY = j;
+
+				while (this.tiles[coordY][coordX].canBeMovedOn(this.tiles[coordY][coordX - 1])) {
+					
+				}
+			}
 		}
 
-		return true;
+		return isSomethingMoved;
 	}
 
 	private tryAddValueToBoard() {

@@ -15,6 +15,10 @@ export class Tile {
         return this.value;
     }
 
+    canBeMovedOn(tile: Tile): boolean {
+        return tile.isEmpty() || this.value === tile.value;
+    }
+
     static empty(): Tile {
         return new Tile(this.emptyValue);
     }
