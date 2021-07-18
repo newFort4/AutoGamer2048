@@ -1,8 +1,11 @@
 import { BaseMovement } from "./base.movement";
 
 export class LeftMovement extends BaseMovement {
+    protected isReverseMovement: boolean = false;
+
     protected minCoordX: number = 0;
     protected minCoordY: number = 1;
+
     protected maxCoordX: number = 3; // ToDo generic length
     protected maxCoordY: number = 3; // ToDo generic length
 

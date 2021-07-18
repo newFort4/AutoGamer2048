@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Movement } from '../enums/movement';
 import { Tile } from '../models/tile';
 import { BaseMovement } from '../movement_definitions/base.movement';
+import { DownMovement } from '../movement_definitions/down.movement';
 import { LeftMovement } from '../movement_definitions/left.movements';
+import { RightMovement } from '../movement_definitions/right.movement';
 import { UpMovement } from '../movement_definitions/up.movement';
 
 @Injectable({
@@ -16,8 +18,8 @@ export class MovementService {
       [
         [Movement.Up, new UpMovement()],
         [Movement.Left, new LeftMovement()],
-        [Movement.Right, new UpMovement()],
-        [Movement.Down, new UpMovement()]
+        [Movement.Right, new RightMovement()],
+        [Movement.Down, new DownMovement()]
       ]
     );
   }

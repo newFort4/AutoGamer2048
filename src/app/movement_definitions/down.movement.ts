@@ -1,16 +1,16 @@
 import { BaseMovement } from "./base.movement";
 
-export class UpMovement extends BaseMovement {
-    protected isReverseMovement: boolean = false;
+export class DownMovement extends BaseMovement {
+    protected isReverseMovement: boolean = true;
 
-    protected minCoordX: number = 1;
+    protected minCoordX: number = 0;
     protected minCoordY: number = 0;
     
-    protected maxCoordX: number = 3; // ToDo generic length
+    protected maxCoordX: number = 2; // ToDo generic length
     protected maxCoordY: number = 3; // ToDo generic length
 
     protected getDestinationTileCoordX(): number {
-        return this.coordX - 1;
+        return this.coordX + 1;
     }
 
     protected getDestinationTileCoordY(): number {
@@ -18,10 +18,10 @@ export class UpMovement extends BaseMovement {
     }
 
     protected recursionEdgeDetector(): boolean {
-        return this.coordX > 0;
+        return this.coordX < 3;
     }
 
     protected recursionCoordIterator(): void {
-        this.coordX--;
+        this.coordX++;
     }
 }
